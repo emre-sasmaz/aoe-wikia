@@ -1,0 +1,268 @@
+@import './variables.scss';
+@import '@angular/material/theming';
+
+@mixin style-theme($theme) {
+  $p: map-get($theme, primary);
+  $a: map-get($theme, accent);
+  $w: map-get($theme, warn);
+  $b: map-get($theme, background);
+  $f: map-get($theme, foreground);
+  $primary: mat-color($p);
+  $accent: mat-color($a);
+  $warn: mat-color($w);
+  $background: mat-color($b, background);
+  $background-card: mat-color($b, card);
+  $foreground: mat-color($f, text);
+  $app-bar: mat-color($b, app-bar);
+  $primary-contrast: mat-color($p, default-contrast);
+  $accent-contrast: mat-color($a, default-contrast);
+  $warn-contrast: mat-color($w, default-contrast);
+
+  html,
+  body {
+    overflow: hidden;
+    margin: 0;
+    height: 100%;
+  }
+
+  main {
+    height: $mainHeight;
+    max-width: 1300px;
+    margin: auto;
+    padding: 2rem;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .color.primary {
+    color: $primary;
+  }
+
+  .color.accent {
+    color: $accent;
+  }
+
+  .color.warn {
+    color: $warn;
+  }
+
+  .background.primary {
+    background-color: $primary;
+    color: $primary-contrast;
+  }
+
+  .background.accent {
+    background-color: $accent;
+    color: $accent-contrast;
+  }
+
+  .background.warn {
+    background-color: $warn;
+    color: $warn-contrast;
+  }
+
+  .background.card {
+    background-color: $background-card;
+  }
+
+  .background.stacked {
+    background-color: $background;
+  }
+
+  text {
+    fill: $foreground;
+  }
+
+  .header>nav>a {
+    text-decoration: none;
+    color: $foreground;
+  }
+
+  form {
+    label.form-label {
+      margin-bottom: 0.75rem;
+      font-size: larger;
+      font-weight: bold;
+    }
+
+    .age-container {
+      padding: 1rem;
+      display: inline-flex;
+      flex-direction: column;
+
+      mat-button-toggle-group {
+        @include mat-elevation(5)
+      }
+    }
+
+    .cost-container {
+      padding: 1rem;
+
+      .cost-filter-container {
+        display: grid;
+        grid-template-columns: 8rem 20rem 1fr;
+        align-items: center;
+
+        >mat-checkbox,
+        >mat-slider,
+        >strong {
+          margin: 0 1rem 0 1rem
+        }
+      }
+    }
+  }
+
+  .table-container {
+    display: block;
+    width: 100%;
+    height: $tableHeight;
+    overflow-y: scroll;
+
+    table.unit-table {
+      width: 100%;
+      max-width: 100%;
+      margin-bottom: 1rem;
+      display: table;
+      border-collapse: collapse;
+      margin: 0px;
+
+      .mat-header-row {
+        display: table-row;
+        background-color: $accent;
+        @include mat-elevation(3);
+        position: sticky;
+        top: 0;
+        z-index: 1;
+
+        .mat-header-cell {
+          color: $accent-contrast;
+          font-size: 1.3rem;
+        }
+      }
+
+      .mat-row.hovered {
+        background: #eee;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+        cursor: pointer;
+      }
+
+      .mat-cell,
+      .mat-header-cell {
+        word-wrap: initial;
+        display: table-cell;
+        padding: 0px 15px;
+        line-break: unset;
+        width: auto;
+        white-space: nowrap;
+        overflow: hidden;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  mat-toolbar.mat-toolbar {
+    &.app-toolbar {
+      padding: 0 8px;
+
+      button.mat-icon-button {
+        margin-right: 8px;
+      }
+    }
+
+    span {
+      margin-right: 4px;
+      margin-left: 4px;
+    }
+
+    button.mat-button {
+      margin-left: 4px;
+      margin-right: 4px;
+    }
+  }
+
+  .static-elevation {
+    @include mat-elevation(2);
+  }
+
+  .elevated {
+    @include mat-elevation-transition;
+    @include mat-elevation(2);
+
+    &:hover {
+      transform: translate(-3px, -3px);
+      @include mat-elevation(6);
+    }
+  }
+
+  .logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    >.logo {
+      width: 30rem;
+    }
+  }
+
+  mat-slider.mat-slider-disabled {
+    cursor: not-allowed;
+  }
+
+  mat-toolbar.header {
+    @include mat-elevation(6);
+    justify-content: flex-end;
+    padding: 0 2.5rem 0 2.5rem;
+
+    >nav>a {
+      margin-right: 2rem;
+    }
+  }
+
+  mat-card.unit-detail-card {
+    @include mat-elevation(6);
+
+    mat-card-title {
+      display: flex;
+      justify-content: center;
+      margin: 1rem !important;
+      font-size: 2rem;
+      line-height: 2rem;
+    }
+
+    mat-card-content {
+      &.not-found {
+        text-align: center;
+        font-size: x-large;
+      }
+
+      margin: 1rem !important;
+
+      .field {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        margin: 0.75rem;
+
+        >.key {
+          text-transform: uppercase;
+          font-weight: bold;
+          line-height: 1.2rem;
+          font-size: 1.3rem;
+        }
+
+        >.value {
+          line-height: 1.2rem;
+          font-size: 1.3rem;
+        }
+      }
+    }
+
+    mat-card-actions {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+<mat-card class="unit-detail-card background accent mat-elevation-z5">
+  <ng-container *ngIf="selectedUnit; else notFound">
+    <mat-card-title>Unit Detail</mat-card-title>
+    <mat-card-content>
+      <div class="field" *ngFor="let field of displayedFields">
+        <label class="key">{{ field.header }}</label>
+        <em class="value">{{ getData(field.key) }}</em>
+      </div>
+    </mat-card-content>
+  </ng-container>
+  <ng-template #notFound>
+    <mat-card-content class="not-found">Detail not found. Please return units page for selection.</mat-card-content>
+  </ng-template>
+  <mat-card-actions>
+    <button id="backButton" mat-raised-button color="primary" routerLink="/units">Back</button>
+  </mat-card-actions>
+</mat-card>

@@ -1,0 +1,19 @@
+<form [formGroup]="form">
+  <div class="age-container">
+    <label class="form-label">Ages</label>
+    <mat-button-toggle-group formControlName="age" color="primary" class="mat-elevation-z">
+      <mat-button-toggle color="primary" *ngFor="let formControl of ageFormControls" [value]="formControl.value">
+        {{ formControl.label }}</mat-button-toggle
+      >
+    </mat-button-toggle-group>
+  </div>
+
+  <div class="cost-container">
+    <label class="form-label">Costs</label>
+    <div [formGroupName]="control" *ngFor="let control of CONTROLS" class="cost-filter-container">
+      <mat-checkbox formControlName="active" color="primary">{{ control }}</mat-checkbox>
+      <mat-slider formControlName="value" thumbLabel tickInterval="1" step="1" min="0" [max]="MAX_COST_VALUE"></mat-slider>
+      <strong>{{ controlValue(control) }}</strong>
+    </div>
+  </div>
+</form>
